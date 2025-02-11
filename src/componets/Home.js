@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { BsSearch } from "react-icons/bs";
-import { ToastContainer } from "react-toastify";
-import { addToCart, productDetail } from "../feautres/cartSlice";
-import { useNavigate } from "react-router";
-import AnimatePage from "../animation/AnimatePage";
-import SideBar from "./SideBar";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { BsSearch } from 'react-icons/bs';
+import { ToastContainer } from 'react-toastify';
+import { addToCart, productDetail } from '../feautres/cartSlice';
+import { useNavigate } from 'react-router';
+import AnimatePage from '../animation/AnimatePage';
+import SideBar from './SideBar';
 
 export default function Home() {
   const items = useSelector((state) => state.allCart.items);
   const [productFilter, setProductsFilter] = useState(items);
   const [selectValue, setSelectedValue] = useState();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const { t, i18n } = useTranslation();
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function Home() {
   /* function for button show Details product */
   const showProductCard = (item) => {
     dispatch(productDetail(item));
-    navigate("/productDetails");
+    navigate('/productDetails');
   };
   const setAllCategory = () => {
     setProductsFilter(items);
@@ -40,7 +40,7 @@ export default function Home() {
     const value = e.target.value;
     setSelectedValue(value);
     filterP(value);
-    if (value === "all") {
+    if (value === 'all') {
       setProductsFilter(items);
     }
     console.log(value);
@@ -54,19 +54,19 @@ export default function Home() {
             {/* form search and category components small screens */}
             <form className="flex justify-center ml-2">
               <select
-                defaultValue={"all"}
+                defaultValue={'all'}
                 id="countries"
                 onChange={handleSelectChange}
                 className="min-[676px]:hidden bg-gray-50 font-medium border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                <option value="all">{t("All Products")}</option>
-                <option value="Phones" className="px-2">
-                  {t("Phones & Tablets")}
+                <option value="all">{t('All Products')}</option>
+                <option value="Shirt" className="px-2">
+                  {t('Shirt')}
                 </option>
-                <option value="Clothes"> {t("Clothes")}</option>
-                <option value="laptop"> {t("Laptops")} </option>
-                <option value="Accessories">{t("Accessoires")} </option>
-                <option value="kitchen">{t("Home")} </option>
+                <option value="Clothes"> {t('Clothes')}</option>
+                <option value="laptop"> {t('Laptops')} </option>
+                <option value="Accessories">{t('Accessoires')} </option>
+                <option value="kitchen">{t('Home')} </option>
               </select>
               <div className="relative w-full ml-4 rounded-lg">
                 <input
@@ -89,7 +89,7 @@ export default function Home() {
             <div className="mt-6 ml-56 max-[676px]:ml-3 grid grid-cols-3 gap-1 md:grid-cols-4 sm:grid-cols-3 sm:gap-1 lg:mt-6 lg:grid-cols-5 lg:gap-1">
               {productFilter
                 .filter((item) => {
-                  if (searchTerm === "") {
+                  if (searchTerm === '') {
                     return item;
                   } else if (
                     item.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -119,9 +119,9 @@ export default function Home() {
 
                       <div className="text-left">
                         <p className="inline-block text-xs font-semibold sm:text-sm md:text-base">
-                          {item.price} {t("MAD")}
+                          {item.price} {t('MAD')}
                           <del className="block text-xs text-blue-400">
-                            {item.lastPrice} {t("MAD")}
+                            {item.lastPrice} {t('MAD')}
                           </del>
                         </p>
                       </div>
@@ -139,9 +139,9 @@ export default function Home() {
                         >
                           <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                         </svg>
-                        {t("addToCart")}
+                        {t('addToCart')}
                       </button>
-                      <ToastContainer position={"top-right"} autoClose={1000} />
+                      <ToastContainer position={'top-right'} autoClose={1000} />
                     </div>
                   </article>
                 ))}

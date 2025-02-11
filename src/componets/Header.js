@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import "./css_files/Header.css";
-import Logo from "../images/logo.png";
-import { BsPersonPlusFill, BsPersonFill } from "react-icons/bs";
-import { FiSettings, FiSearch } from "react-icons/fi";
-import { RiShareForward2Line } from "react-icons/ri";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUserName, setLogOut } from "../feautres/userSlice";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import React, { useState, useEffect } from 'react';
+import './css_files/Header.css';
+import Logo from '../images/logo1.jpg';
+import { BsPersonPlusFill, BsPersonFill } from 'react-icons/bs';
+import { FiSettings, FiSearch } from 'react-icons/fi';
+import { RiShareForward2Line } from 'react-icons/ri';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserName, setLogOut } from '../feautres/userSlice';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebaseConfig';
 
 function Header() {
   const { t, i18n } = useTranslation();
@@ -34,14 +34,14 @@ function Header() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("photo", user.photoURL);
+        console.log('photo', user.photoURL);
         setPhoto(user.photoURL);
         const name = user.displayName;
         const email = user.email;
         const icon = user.photoURL;
-        localStorage.setItem("name", name);
-        localStorage.setItem("email", email);
-        localStorage.setItem("photo", icon);
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('photo', icon);
       }
     });
   }, []);
@@ -49,27 +49,26 @@ function Header() {
     <nav>
       <input id="nav-toggle" type="checkbox" />
       <div className="logo">
-        <img src={Logo} alt="image_logo" onClick={() => navigate("/")} />
+        <img src={Logo} alt="image_logo" onClick={() => navigate('/')} />
       </div>
       <ul className="links">
         <li>
-          {" "}
+          {' '}
           <NavLink to="/" exact="true" active="true">
-            {t("header")}
+            {t('header')}
           </NavLink>
         </li>
         <li>
           <NavLink to="/contactUs" exact="true" active="true">
-            {t("headerContact")}
+            {t('headerContact')}
           </NavLink>
         </li>
-        
       </ul>
       <div className="icons font-bold flex mt-[21px] relative">
         <NavLink active="true" exact="true" className="hover:text-black">
           <div className="text-center font-mono">
             <button onClick={handleOpen}>
-              {" "}
+              {' '}
               {userName ? (
                 <img
                   alt="user"
